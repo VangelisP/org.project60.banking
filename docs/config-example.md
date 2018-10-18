@@ -94,7 +94,7 @@ This kind of information is entered in [JSON](https://www.json.org/). For the CA
 You can copy the JSON data below and paste it in the bottom half of the Configuration Manager Add Plugin form (the part marked with **Configuration**). 
 Once all the data is entered press the **Save** button to save your plugin configuration. 
 
-If you want to know more about the configuration of an importer and how you can create your specific importer please check [How to create an importer](create-importer.md).
+If you want to know more about the configuration of an importer and how you can create your specific importer please check [How to create an XML importer](create-xml-importer.md) or [How to create a CSV importer](create-csv-importer.md).
 
 ``` json
 {

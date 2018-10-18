@@ -1,32 +1,32 @@
-# XML Importer - List of supported actions
+# CSV Importer - List of supported actions
 
 ## set
 
 ### Description
 
-Sets a variable by reading an XPATH (if xpath: is defined in the from) or another variable
+Sets a variable by reading a column name or number into another variable
 
 ### Parameters
 
-* "from": Defines which element from the XML Path OR variable to read so that it can find the variable. if our definition is starting with `xpath` then we're directing the importer to find that XPATH instead of a variable.
+* "from": Defines which column number or name to read so that it can find the variable. if our definition is numeric then we're directing the importer to find that column number. If our definition is a string, we're directing the importer to find the column with that string.
 * "to": Which variable to use to store the altered value. 
 
 ### Examples
 
 ```json
 {
-  "comment": "Get the name from XPATH and store it to variable name",
-  "from": "xpath:camt:BkToCstmrStmt/camt:Stmt/camt:Acct/camt:Id/camt:IBAN",
-  "to": "tx.name",
+  "comment": "Get the name and store it to variable name",
+  "from": 1,
+  "to": "name",
   "type": "set" 
 }
 ```
 
 ```json
 {
-  "comment": "Get the value from another variable and store it to the new variable",
-  "from": "temp_name",
-  "to": "tx.name",
+  "comment": "Get the value from a column name and store it to the new variable",
+  "from": "import_name",
+  "to": "name",
   "type": "set" 
 }
 ```
@@ -39,7 +39,7 @@ Although a little bit similar to the `set` action, amount is used when we know t
 
 ### Parameters
 
-- "from": Defines which element from the XML Path OR variable to read so that it can find the variable. if our definition is starting with `xpath` then we're directing the importer to find that XPATH instead of a variable.
+- "from": Defines which column number or name to read so that it can find the variable. if our definition is numeric then we're directing the importer to find that column number. If our definition is a string, we're directing the importer to find the column with that string.
 - "to": Which variable to use to store the altered value.
 
 ### Examples
@@ -47,7 +47,7 @@ Although a little bit similar to the `set` action, amount is used when we know t
 ```json
 {
   "comment": "statement amount",
-  "from": "xpath:camt:BkToCstmrStmt/camt:Stmt/camt:Bal[2]/camt:Amt",
+  "from": 2,
   "to": "amount",
   "type": "amount" 
 }
@@ -61,7 +61,7 @@ Fields with dates have their own action, called "strtotime" which does the datet
 
 ### Parameters
 
-- "from": Defines which element from the XML Path OR variable to read so that it can find the variable. if our definition is starting with `xpath` then we're directing the importer to find that XPATH instead of a variable.
+- "from": Defines which column number or name to read so that it can find the variable. if our definition is numeric then we're directing the importer to find that column number. If our definition is a string, we're directing the importer to find the column with that string.
 - "to": Which variable to use to store the altered value.
 
 ### Examples
@@ -69,7 +69,7 @@ Fields with dates have their own action, called "strtotime" which does the datet
 ```json
 {
   "comment": "booking date",
-  "from": "xpath:camt:BookgDt/camt:Dt",
+  "from": 3,
   "to": "booking_date",
   "type": "strtotime" 
 }
@@ -83,7 +83,7 @@ This action is doing an in-place replacement of a string into another string. Th
 
 ### Parameters
 
-- "from": Defines which element from the XML Path OR variable to read so that it can find the variable. if our definition is starting with an `xpath` string, then we're directing the importer to find that variable in the transaction entry, otherwise it will bring back the variable defined.
+- "from": Defines which column number or name to read so that it can find the variable. if our definition is numeric then we're directing the importer to find that column number. If our definition is a string, we're directing the importer to find the column with that string.
 - "to": Which variable to use to store the altered value.
 - "type": replace:<source_string>:<target_string>
 
@@ -106,7 +106,7 @@ Similar to the `set` action, the `regex` action does what it exactly implies: Us
 
 ### Parameters
 
-- "from": Defines which element from the XML Path OR variable to read so that it can find the variable. if our definition is starting with an `xpath` string, then we're directing the importer to find that variable inside the specified XPATH, otherwise, look into other already processed variables.
+- "from": Defines which column number or name to read so that it can find the variable. if our definition is numeric then we're directing the importer to find that column number. If our definition is a string, we're directing the importer to find the column with that string.
 - "to": Which variable to use to store the altered value.
 - "type": `regex:<regex_expression>`
 
@@ -115,7 +115,7 @@ Similar to the `set` action, the `regex` action does what it exactly implies: Us
 ```json
 {
   "comment": "party address",
-  "from": "xpath:camt:RltdPties/camt:Dbtr/camt:PstlAdr/camt:AdrLine[2]|camt:RltdPties/camt:Cdtr/camt:PstlAdr/camt:AdrLine[2]",
+  "from": 5,
   "to": "postal_code",
   "type": "regex:#^(\\d{4}) +\\w+#" 
 }
@@ -132,7 +132,7 @@ Takes out the (trims) a given character from a given string.
 
 ### Parameters
 
-- "from": Defines which element from the XML Path OR variable to read so that it can find the variable. if our definition is starting with an `xpath` string, then we're directing the importer to find that variable inside the specified XPATH, otherwise, look into other already processed variables.
+- "from": Defines which column number or name to read so that it can find the variable. if our definition is numeric then we're directing the importer to find that column number. If our definition is a string, we're directing the importer to find the column with that string.
 - "to": Which variable to use to store the altered value.
 - "type": `trim:<character_to_trim>`
 
@@ -155,7 +155,7 @@ Appends on variable after another by using a character defined in type type
 
 ### Parameters
 
-- "from": Defines which element from the XML Path OR variable to read so that it can find the variable. if our definition is starting with an `xpath` string, then we're directing the importer to find that variable inside the specified XPATH, otherwise, look into other already processed variables.
+- "from": Defines which column number or name to read so that it can find the variable. if our definition is numeric then we're directing the importer to find that column number. If our definition is a string, we're directing the importer to find the column with that string.
 - "to": Which variable to use to append the altered value.
 - "type": `append:<character_to_append_between_variables>`
 

@@ -46,7 +46,11 @@ In our example, we're defining that our structure will start to be read from the
 
 ### Probe
 
-The Probe attribute, although it's considered *optional*, is mainly used as a validator for the XML file that you are importing. If and when specified, it's like asking CiviBanking: Does the file that I am currently importing has this line ? If yes, it's valid and proceed to the rules. If no, discard and return. In this specific example, since we present the 'probe' attribute, we specify that we're looking for the string: `camt:BkToCstmrStmt/camt:GrpHdr/camt:MsgId` . If that string is identified, importer will proceed.
+The Probe attribute, although it's considered *optional*, is mainly used as a validator for the XML file that you are importing. If and when specified, it's like asking CiviBanking: Does the file that I am currently importing has this line ? 
+
+If yes, it's valid and proceed to the rules. If no, discard and return. 
+
+In this specific example, since we present the 'probe' attribute, we specify that we're looking for the string: `camt:BkToCstmrStmt/camt:GrpHdr/camt:MsgId` . If that string is identified, importer will proceed. If not, it will simply bail-out.
 
 ## Rules / Subrules (set of actions)
 
@@ -226,11 +230,11 @@ Detailed parameters:
 
 What our snippet does exactly: Read variable from XPATH `xpath:camt:RltdPties/camt:Dbtr/camt:PstlAdr/camt:AdrLine[2]|camt:RltdPties/camt:Cdtr/camt:PstlAdr/camt:AdrLine[2]` and do a regex: `^(\d{4}) +\w+` , which means: if a string is in the format: `1234 POST` , return the numeric part only (1234) into the variable `postal_code`
 
-!!! note
-The regex expression should start and end with the dash sign (#). 
+!!! note "Note1: Regex expressions"
+    The regex expression should start and end with the dash sign (#). 
 
-!!! note
-Please be careful with the backslashes. You will need to escape it (like in our example, by using the backslash twice).
+!!! note "Note2: Escaped backslashes"
+    Please be careful with the backslashes. You will need to escape it (like in our example, by using the backslash twice).
 
 For a comprehensive list of actions, please read [here](importer-xml-actions.md).
 

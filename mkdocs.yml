@@ -9,16 +9,20 @@ pages:
 - A basic configuration that might just work: config-example.md
 - Terminology: terminology.md
 - How To Guide: how-to.md
-- Techie - how to create an importer: create-importer.md
+- Techie - how to create an XML importer: create-xml-importer.md
+- Techie - how to create a CSV importer: create-csv-importer.md
 - Techie - how to create a matcher: create-matcher.md
 - Techie - how to create a postprocessor: create-postprocessor.md
+- Techie - Index - List of Importer XML actions: importer-xml-actions.md
+- Techie - Index - List of Importer CSV actions: importer-csv-actions.md
 
 markdown_extensions:
   - attr_list
   - admonition
   - def_list
   - codehilite
-  - toc(permalink=true)
+  - toc:
+      permalink: true
   - pymdownx.superfences
   - pymdownx.inlinehilite
   - pymdownx.tilde
